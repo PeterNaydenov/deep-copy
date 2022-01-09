@@ -8,6 +8,10 @@
     "cover": "nyc mocha test",
     "build": "webpack"
   },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/PeterNaydenov/deep-copy.git"
+    },
   "author": "Peter Naydenov",
   "license": "MIT",
   "devDependencies": {
