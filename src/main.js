@@ -7,8 +7,8 @@
  *     add a polyfill for 'generators'.
  * 
  *     History notes:
- *        - Development started on January 8th, 2021
- *        - Published on GitHub for first time: January 9th, 2021
+ *        - Development started on January 8th, 2022
+ *        - Published on GitHub for first time: January 9th, 2022
  *
  */
 

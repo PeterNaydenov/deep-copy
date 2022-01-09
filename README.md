@@ -43,10 +43,10 @@ import deepCopy from '@peter.naydenov/deep-copy'
 ```js
 let 
       x = {
-                ls   : [ 1,2,3 ]
+              ls   : [ 1,2,3 ]
             , name : 'Peter'
             , props : {
-                            eyeColor: 'blue'
+                          eyeColor: 'blue'
                         , age     : 47
                         , height  : 176
                         , sizes : [12,33,12,21]
