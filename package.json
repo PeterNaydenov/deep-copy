@@ -1,6 +1,6 @@
 {
   "name": "@peter.naydenov/deep-copy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Immutable copies of javascript objects and arrays",
   "main": "src/main.js",
   "scripts": {
@@ -9,9 +9,9 @@
     "build": "webpack"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/PeterNaydenov/deep-copy.git"
-    },
+    "type": "git",
+    "url": "https://github.com/PeterNaydenov/deep-copy.git"
+  },
   "author": "Peter Naydenov",
   "license": "MIT",
   "devDependencies": {
