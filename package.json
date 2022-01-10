@@ -2,7 +2,7 @@
   "name": "@peter.naydenov/deep-copy",
   "version": "1.0.0",
   "description": "Immutable copies of javascript objects and arrays",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "mocha test",
     "cover": "nyc mocha test",
