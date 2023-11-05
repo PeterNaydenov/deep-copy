@@ -1,5 +1,12 @@
 ## Release History
 
+
+
+### 1.0.2 (2023-11-05)
+- [x] Dev dependencies update;
+
+
+
 ### 1.0.1 (2022-01-10) 
  - [x] Fix: Wrong main file position in package.json;
  
