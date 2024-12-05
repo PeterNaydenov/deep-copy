@@ -1,11 +1,7 @@
 "use strict"
 
-const
-      chai = require ( 'chai' )
-    , expect = chai.expect
-    , deepCopy = require ( '../src/main.js' )
-    ;
-
+import { expect } from 'chai'
+import deepCopy from '../src/main.js'
 
 describe ( 'Deep copy', () => {
 

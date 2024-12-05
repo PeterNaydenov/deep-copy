@@ -2,6 +2,13 @@
 
 
 
+### 2.0.0 (2024-12-05)
+- [x] Convert to ES module;
+- [x] Changes in build process. Webpack is replaced with Rollup;
+- [x] No change in functionality;
+
+
+
 ### 1.0.2 (2023-11-05)
 - [x] Dev dependencies update;
 

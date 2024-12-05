@@ -3,10 +3,11 @@
   "version": "1.0.2",
   "description": "Immutable copies of javascript objects and arrays",
   "main": "src/main.js",
+  "type": "module",
   "scripts": {
     "test": "mocha test",
-    "cover": "nyc mocha test",
-    "build": "webpack"
+    "cover": "c8 mocha test",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -15,16 +16,17 @@
   "author": "Peter Naydenov",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.25.7",
-    "@babel/preset-env": "7.25.7",
+    "@babel/core": "7.26.0",
+    "@babel/preset-env": "7.26.0",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "babel-loader": "9.2.1",
-    "chai": "5.1.1",
-    "mocha": "10.7.3",
-    "nyc": "17.1.0",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4"
+    "c8": "10.1.2",
+    "chai": "5.1.2",
+    "mocha": "11.0.1"
   },
-  "nyc": {
+  "c8": {
     "include": [
       "src/**/*.js"
     ],
