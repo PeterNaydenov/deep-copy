@@ -1,0 +1,398 @@
+{
+  "environment": {
+    "node": "v26.12.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M3 Max",
+    "memoryGiB": 128,
+    "measuredAt": "2026-10-29T05:24:11.934Z",
+    "sourceSha256": "25c51d5cf68cb0787b5436b4ea9bb3b436e3af1786b412a9a4f59828d0a6b51a",
+    "samples": 5,
+    "warmups": 3,
+    "unit": "milliseconds for one complete copy"
+  },
+  "results": [
+    {
+      "shape": "flat",
+      "operation": "structuredClone",
+      "samples": [
+        {
+          "shape": "flat",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 566.677
+        },
+        {
+          "shape": "flat",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 486.101
+        },
+        {
+          "shape": "flat",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 483.533
+        },
+        {
+          "shape": "flat",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 505.766
+        },
+        {
+          "shape": "flat",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 480.674
+        }
+      ],
+      "medianMs": 486.1,
+      "rangeMs": [
+        480.67,
+        566.68
+      ],
+      "relativeToStructuredClone": 1
+    },
+    {
+      "shape": "flat",
+      "operation": "deep-copy",
+      "samples": [
+        {
+          "shape": "flat",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 251.534
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 228.455
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 222.546
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 221.678
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 226.956
+        }
+      ],
+      "medianMs": 226.96,
+      "rangeMs": [
+        221.68,
+        251.53
+      ],
+      "relativeToStructuredClone": 0.47
+    },
+    {
+      "shape": "flat",
+      "operation": "deep-copy-no-cycles",
+      "samples": [
+        {
+          "shape": "flat",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 224.866
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 229.56
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 221.534
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 222.267
+        },
+        {
+          "shape": "flat",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 241.177
+        }
+      ],
+      "medianMs": 224.87,
+      "rangeMs": [
+        221.53,
+        241.18
+      ],
+      "relativeToStructuredClone": 0.46
+    },
+    {
+      "shape": "records",
+      "operation": "structuredClone",
+      "samples": [
+        {
+          "shape": "records",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 80.02
+        },
+        {
+          "shape": "records",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 79.439
+        },
+        {
+          "shape": "records",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 78.896
+        },
+        {
+          "shape": "records",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 80.198
+        },
+        {
+          "shape": "records",
+          "operation": "structuredClone",
+          "repeats": 1,
+          "ms": 80.507
+        }
+      ],
+      "medianMs": 80.02,
+      "rangeMs": [
+        78.9,
+        80.51
+      ],
+      "relativeToStructuredClone": 1
+    },
+    {
+      "shape": "records",
+      "operation": "deep-copy",
+      "samples": [
+        {
+          "shape": "records",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 36.279
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 37.009
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 37.107
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 36.444
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy",
+          "repeats": 1,
+          "ms": 36.996
+        }
+      ],
+      "medianMs": 37,
+      "rangeMs": [
+        36.28,
+        37.11
+      ],
+      "relativeToStructuredClone": 0.46
+    },
+    {
+      "shape": "records",
+      "operation": "deep-copy-no-cycles",
+      "samples": [
+        {
+          "shape": "records",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 33.695
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 34.058
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 33.91
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 33.202
+        },
+        {
+          "shape": "records",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 1,
+          "ms": 33.978
+        }
+      ],
+      "medianMs": 33.91,
+      "rangeMs": [
+        33.2,
+        34.06
+      ],
+      "relativeToStructuredClone": 0.42
+    },
+    {
+      "shape": "deep",
+      "operation": "structuredClone",
+      "samples": [
+        {
+          "shape": "deep",
+          "operation": "structuredClone",
+          "repeats": 5,
+          "failed": true,
+          "error": "RangeError: Maximum call stack size exceeded"
+        },
+        {
+          "shape": "deep",
+          "operation": "structuredClone",
+          "repeats": 5,
+          "failed": true,
+          "error": "RangeError: Maximum call stack size exceeded"
+        },
+        {
+          "shape": "deep",
+          "operation": "structuredClone",
+          "repeats": 5,
+          "failed": true,
+          "error": "RangeError: Maximum call stack size exceeded"
+        },
+        {
+          "shape": "deep",
+          "operation": "structuredClone",
+          "repeats": 5,
+          "failed": true,
+          "error": "RangeError: Maximum call stack size exceeded"
+        },
+        {
+          "shape": "deep",
+          "operation": "structuredClone",
+          "repeats": 5,
+          "failed": true,
+          "error": "RangeError: Maximum call stack size exceeded"
+        }
+      ],
+      "failed": true,
+      "error": "RangeError: Maximum call stack size exceeded",
+      "medianMs": null,
+      "rangeMs": null,
+      "relativeToStructuredClone": null
+    },
+    {
+      "shape": "deep",
+      "operation": "deep-copy",
+      "samples": [
+        {
+          "shape": "deep",
+          "operation": "deep-copy",
+          "repeats": 5,
+          "ms": 0.477
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy",
+          "repeats": 5,
+          "ms": 0.468
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy",
+          "repeats": 5,
+          "ms": 0.546
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy",
+          "repeats": 5,
+          "ms": 0.519
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy",
+          "repeats": 5,
+          "ms": 0.539
+        }
+      ],
+      "medianMs": 0.52,
+      "rangeMs": [
+        0.47,
+        0.55
+      ],
+      "relativeToStructuredClone": null
+    },
+    {
+      "shape": "deep",
+      "operation": "deep-copy-no-cycles",
+      "samples": [
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.121
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.12
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.117
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.118
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.117
+        }
+      ],
+      "medianMs": 0.12,
+      "rangeMs": [
+        0.12,
+        0.12
+      ],
+      "relativeToStructuredClone": null
+    }
+  ]
+}
