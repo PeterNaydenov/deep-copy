@@ -1,0 +1,237 @@
+{
+  "environment": {
+    "node": "v26.12.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M3 Max",
+    "memoryGiB": 128,
+    "measuredAt": "2026-10-28T06:14:04.649Z",
+    "sourceSha256": "0c341a090527c43b7114ba9d5b9a6c358f634296be86f3f2524e7068775d7122",
+    "samples": 5,
+    "unit": "MiB (1024 * 1024 bytes)"
+  },
+  "results": [
+    {
+      "shape": "flat",
+      "samples": [
+        {
+          "shape": "flat",
+          "inputHeapMiB": 77.76072692871094,
+          "afterCopyExtraHeapMiB": 108.46302032470703,
+          "retainedExtraHeapMiB": 48.01164245605469,
+          "afterReleaseExtraHeapMiB": 0.009521484375,
+          "processPeakRssMiB": 278.3125
+        },
+        {
+          "shape": "flat",
+          "inputHeapMiB": 77.76072692871094,
+          "afterCopyExtraHeapMiB": 108.46302032470703,
+          "retainedExtraHeapMiB": 48.01164245605469,
+          "afterReleaseExtraHeapMiB": 0.009521484375,
+          "processPeakRssMiB": 278.390625
+        },
+        {
+          "shape": "flat",
+          "inputHeapMiB": 77.76072692871094,
+          "afterCopyExtraHeapMiB": 108.46302032470703,
+          "retainedExtraHeapMiB": 48.01164245605469,
+          "afterReleaseExtraHeapMiB": 0.009521484375,
+          "processPeakRssMiB": 278.84375
+        },
+        {
+          "shape": "flat",
+          "inputHeapMiB": 77.76072692871094,
+          "afterCopyExtraHeapMiB": 108.46302032470703,
+          "retainedExtraHeapMiB": 48.01164245605469,
+          "afterReleaseExtraHeapMiB": 0.009521484375,
+          "processPeakRssMiB": 278.234375
+        },
+        {
+          "shape": "flat",
+          "inputHeapMiB": 77.76072692871094,
+          "afterCopyExtraHeapMiB": 108.46302032470703,
+          "retainedExtraHeapMiB": 48.01164245605469,
+          "afterReleaseExtraHeapMiB": 0.009521484375,
+          "processPeakRssMiB": 278.140625
+        }
+      ],
+      "median": {
+        "inputHeapMiB": 77.761,
+        "afterCopyExtraHeapMiB": 108.463,
+        "retainedExtraHeapMiB": 48.012,
+        "afterReleaseExtraHeapMiB": 0.01,
+        "processPeakRssMiB": 278.313
+      },
+      "range": {
+        "inputHeapMiB": [
+          77.761,
+          77.761
+        ],
+        "afterCopyExtraHeapMiB": [
+          108.463,
+          108.463
+        ],
+        "retainedExtraHeapMiB": [
+          48.012,
+          48.012
+        ],
+        "afterReleaseExtraHeapMiB": [
+          0.01,
+          0.01
+        ],
+        "processPeakRssMiB": [
+          278.141,
+          278.844
+        ]
+      }
+    },
+    {
+      "shape": "records",
+      "samples": [
+        {
+          "shape": "records",
+          "inputHeapMiB": 12.97357177734375,
+          "afterCopyExtraHeapMiB": 42.34510040283203,
+          "retainedExtraHeapMiB": 29.116172790527344,
+          "afterReleaseExtraHeapMiB": 0.0424652099609375,
+          "processPeakRssMiB": 137.46875
+        },
+        {
+          "shape": "records",
+          "inputHeapMiB": 12.97357177734375,
+          "afterCopyExtraHeapMiB": 42.36156463623047,
+          "retainedExtraHeapMiB": 29.116172790527344,
+          "afterReleaseExtraHeapMiB": 0.0424652099609375,
+          "processPeakRssMiB": 137.375
+        },
+        {
+          "shape": "records",
+          "inputHeapMiB": 12.97357177734375,
+          "afterCopyExtraHeapMiB": 42.35749053955078,
+          "retainedExtraHeapMiB": 29.116172790527344,
+          "afterReleaseExtraHeapMiB": 0.0424652099609375,
+          "processPeakRssMiB": 137.453125
+        },
+        {
+          "shape": "records",
+          "inputHeapMiB": 12.97357177734375,
+          "afterCopyExtraHeapMiB": 42.30506134033203,
+          "retainedExtraHeapMiB": 29.116172790527344,
+          "afterReleaseExtraHeapMiB": 0.0424652099609375,
+          "processPeakRssMiB": 137.171875
+        },
+        {
+          "shape": "records",
+          "inputHeapMiB": 12.97357177734375,
+          "afterCopyExtraHeapMiB": 42.34239959716797,
+          "retainedExtraHeapMiB": 29.116172790527344,
+          "afterReleaseExtraHeapMiB": 0.0424652099609375,
+          "processPeakRssMiB": 137.5
+        }
+      ],
+      "median": {
+        "inputHeapMiB": 12.974,
+        "afterCopyExtraHeapMiB": 42.345,
+        "retainedExtraHeapMiB": 29.116,
+        "afterReleaseExtraHeapMiB": 0.042,
+        "processPeakRssMiB": 137.453
+      },
+      "range": {
+        "inputHeapMiB": [
+          12.974,
+          12.974
+        ],
+        "afterCopyExtraHeapMiB": [
+          42.305,
+          42.362
+        ],
+        "retainedExtraHeapMiB": [
+          29.116,
+          29.116
+        ],
+        "afterReleaseExtraHeapMiB": [
+          0.042,
+          0.042
+        ],
+        "processPeakRssMiB": [
+          137.172,
+          137.5
+        ]
+      }
+    },
+    {
+      "shape": "deep",
+      "samples": [
+        {
+          "shape": "deep",
+          "inputHeapMiB": 0.1311798095703125,
+          "afterCopyExtraHeapMiB": 0.8804702758789062,
+          "retainedExtraHeapMiB": 0.22133636474609375,
+          "afterReleaseExtraHeapMiB": 0.017303466796875,
+          "processPeakRssMiB": 48.875
+        },
+        {
+          "shape": "deep",
+          "inputHeapMiB": 0.1311798095703125,
+          "afterCopyExtraHeapMiB": 0.8804702758789062,
+          "retainedExtraHeapMiB": 0.22133636474609375,
+          "afterReleaseExtraHeapMiB": 0.017303466796875,
+          "processPeakRssMiB": 48.78125
+        },
+        {
+          "shape": "deep",
+          "inputHeapMiB": 0.1311798095703125,
+          "afterCopyExtraHeapMiB": 0.7611160278320312,
+          "retainedExtraHeapMiB": 0.22133636474609375,
+          "afterReleaseExtraHeapMiB": 0.017303466796875,
+          "processPeakRssMiB": 48.640625
+        },
+        {
+          "shape": "deep",
+          "inputHeapMiB": 0.1311798095703125,
+          "afterCopyExtraHeapMiB": 0.8804702758789062,
+          "retainedExtraHeapMiB": 0.22133636474609375,
+          "afterReleaseExtraHeapMiB": 0.017303466796875,
+          "processPeakRssMiB": 48.953125
+        },
+        {
+          "shape": "deep",
+          "inputHeapMiB": 0.1311798095703125,
+          "afterCopyExtraHeapMiB": 0.8804702758789062,
+          "retainedExtraHeapMiB": 0.22133636474609375,
+          "afterReleaseExtraHeapMiB": 0.017303466796875,
+          "processPeakRssMiB": 48.84375
+        }
+      ],
+      "median": {
+        "inputHeapMiB": 0.131,
+        "afterCopyExtraHeapMiB": 0.88,
+        "retainedExtraHeapMiB": 0.221,
+        "afterReleaseExtraHeapMiB": 0.017,
+        "processPeakRssMiB": 48.844
+      },
+      "range": {
+        "inputHeapMiB": [
+          0.131,
+          0.131
+        ],
+        "afterCopyExtraHeapMiB": [
+          0.761,
+          0.88
+        ],
+        "retainedExtraHeapMiB": [
+          0.221,
+          0.221
+        ],
+        "afterReleaseExtraHeapMiB": [
+          0.017,
+          0.017
+        ],
+        "processPeakRssMiB": [
+          48.641,
+          48.953
+        ]
+      }
+    }
+  ]
+}
