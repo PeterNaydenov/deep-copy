@@ -22,7 +22,7 @@ import deepCopy from '@peter.naydenov/deep-copy'
 
 
 
-**Installation for browsers**: Execute script '`npm run build`' in the console. Then grab file "`dist/deep-copy.min.js`" and put it inside the project. Request the file from HTML page. Global variable 'deepCopy' is available for use.
+**Installation for browsers**: Execute script '`npm run build`' in the console. Then grab file "`dist/deep-copy.umd.js`" and put it inside the project. Request the file from HTML page. Global variable 'deepCopy' is available for use.
 
 
             Note:
