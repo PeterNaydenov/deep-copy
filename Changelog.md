@@ -2,6 +2,15 @@
 
 
 
+### 3.0.2 (2026-10-30)
+- Preserve sparse array lengths and preallocate copied arrays. Copy own enumerable string keys, with special handling for `__proto__`; symbol keys are not copied.
+- Keep tagged built-ins, including cross-realm values, by reference instead of converting them to empty objects. Instances tagged as ordinary objects are still copied as plain objects.
+- Optimize property copying for data structures; modified prototypes with inherited setters are outside the supported data-only case.
+- Route package imports and CommonJS requires to their respective builds, generate ESM TypeScript declarations from JSDoc, and build before packing.
+- Update documentation, regression tests, and performance measurements.
+
+
+
 ### 3.0.1 (2026-10-30)
 - [x] The build moved from Rollup to Vite. Vite builds with Rolldown and resolves the modules on its own. The 'rollup' and the three '@rollup/plugin-*' dev dependencies are gone;
 - [x] Fix: '@rollup/plugin-node-resolve' was removed from the build. It was not needed, and its 'deepmerge' dependency had a prototype poisoning advisory with no fixed version;
