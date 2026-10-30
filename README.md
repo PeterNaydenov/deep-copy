@@ -112,6 +112,9 @@ The following measurements compare the `v2.0.0` and `v3.0.1` repository tags wit
 | 3.0.1 | 223.97 ms | 36.37 ms | 0.415 ms |
 | 3.0.2 | 219.47 ms | 27.23 ms | 0.412 ms |
 | 3.0.2, cycle checks off | 224.14 ms | 24.40 ms | 0.126 ms |
+| `structuredClone` | 499.33 ms | 79.93 ms | Stack overflow |
+
+`structuredClone` was measured in a separate run on the same machine using the same inputs, with five fresh-process samples and three warmup copies. On the deep chain it threw a `RangeError` instead of completing. The [structuredClone samples](https://github.com/PeterNaydenov/deep-copy/blob/master/benchmarks/speed.results.json) are recorded separately from the release comparison. `structuredClone` supports more built-in types and preserves shared references, so the operations have different behavior outside these data-only inputs.
 
 On these inputs, 3.0.2 is about 25% faster than 3.0.1 for nested records. The small differences on the flat and deep inputs are within the sample ranges. Version 2.0.0 does not support circular references; disabling cycle checks in 3.0.2 is safe only for acyclic inputs.
 
