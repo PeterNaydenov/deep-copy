@@ -2,7 +2,7 @@ function e(e) {
 	if (typeof e != "object" || !e) return 0;
 	if (Array.isArray(e)) return 2;
 	let t = Object.getPrototypeOf(e);
-	return t === null || t === Object.prototype ? 1 : e.nodeType || e instanceof Date || e instanceof RegExp || e instanceof Map || e instanceof Set || e instanceof WeakMap || e instanceof WeakSet || e instanceof ArrayBuffer || e instanceof DataView || ArrayBuffer.isView(e) ? 0 : 1;
+	return t === null || t === Object.prototype ? 1 : +(Object.prototype.toString.call(e) === "[object Object]");
 }
 function t(e, t, n) {
 	Object.defineProperty(e, t, {
@@ -15,7 +15,7 @@ function t(e, t, n) {
 function n(n, r) {
 	let i = e(n);
 	if (i === 0) return n;
-	let a = (r == null ? void 0 : r.detectCycles) !== !1, o = i === 2 ? [] : {}, s = [n], c = [o], l = [], u = 0, d = null;
+	let a = (r == null ? void 0 : r.detectCycles) !== !1, o = i === 2 ? Array(n.length) : {}, s = [n], c = [o], l = [], u = 0, d = null;
 	for (; s.length;) {
 		let n = s.pop(), r = c.pop();
 		if (n === null) {
@@ -40,7 +40,7 @@ function n(n, r) {
 				continue;
 			}
 			let m, h = !1;
-			if (Array.isArray(p)) m = [];
+			if (Array.isArray(p)) m = Array(p.length);
 			else {
 				let t = Object.getPrototypeOf(p);
 				t === null || t === Object.prototype ? m = {} : e(p) === 0 ? (m = p, h = !0) : m = {};
