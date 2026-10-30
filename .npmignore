@@ -5,4 +5,5 @@ node_modules
 /coverage
 /test
 /benchmarks
+vite.config.js
 package-lock.json
