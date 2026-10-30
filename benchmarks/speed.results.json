@@ -5,11 +5,12 @@
     "arch": "arm64",
     "cpu": "Apple M3 Max",
     "memoryGiB": 128,
-    "measuredAt": "2026-10-29T05:24:11.934Z",
-    "sourceSha256": "25c51d5cf68cb0787b5436b4ea9bb3b436e3af1786b412a9a4f59828d0a6b51a",
+    "measuredAt": "2026-10-30T20:41:40.657Z",
+    "sourceSha256": "3cfcb9dd5862c6bf087f244abf80772e8abd40a8658b2168d378b5a8b6effa4c",
     "samples": 5,
     "warmups": 3,
-    "unit": "milliseconds for one complete copy"
+    "unit": "milliseconds for one complete copy",
+    "sourceNote": "After measurement, only JSDoc comments in src/main.js were updated; runtime code is unchanged."
   },
   "results": [
     {
@@ -20,37 +21,37 @@
           "shape": "flat",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 566.677
+          "ms": 474.068
         },
         {
           "shape": "flat",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 486.101
+          "ms": 499.333
         },
         {
           "shape": "flat",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 483.533
+          "ms": 527.482
         },
         {
           "shape": "flat",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 505.766
+          "ms": 480.493
         },
         {
           "shape": "flat",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 480.674
+          "ms": 513.776
         }
       ],
-      "medianMs": 486.1,
+      "medianMs": 499.33,
       "rangeMs": [
-        480.67,
-        566.68
+        474.07,
+        527.48
       ],
       "relativeToStructuredClone": 1
     },
@@ -62,39 +63,39 @@
           "shape": "flat",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 251.534
+          "ms": 243.627
         },
         {
           "shape": "flat",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 228.455
+          "ms": 220.057
         },
         {
           "shape": "flat",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 222.546
+          "ms": 222.857
         },
         {
           "shape": "flat",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 221.678
+          "ms": 226.247
         },
         {
           "shape": "flat",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 226.956
+          "ms": 220.742
         }
       ],
-      "medianMs": 226.96,
+      "medianMs": 222.86,
       "rangeMs": [
-        221.68,
-        251.53
+        220.06,
+        243.63
       ],
-      "relativeToStructuredClone": 0.47
+      "relativeToStructuredClone": 0.45
     },
     {
       "shape": "flat",
@@ -104,39 +105,39 @@
           "shape": "flat",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 224.866
+          "ms": 229.362
         },
         {
           "shape": "flat",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 229.56
+          "ms": 227.936
         },
         {
           "shape": "flat",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 221.534
+          "ms": 220.294
         },
         {
           "shape": "flat",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 222.267
+          "ms": 221.043
         },
         {
           "shape": "flat",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 241.177
+          "ms": 226.467
         }
       ],
-      "medianMs": 224.87,
+      "medianMs": 226.47,
       "rangeMs": [
-        221.53,
-        241.18
+        220.29,
+        229.36
       ],
-      "relativeToStructuredClone": 0.46
+      "relativeToStructuredClone": 0.45
     },
     {
       "shape": "records",
@@ -146,37 +147,37 @@
           "shape": "records",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 80.02
+          "ms": 79.933
         },
         {
           "shape": "records",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 79.439
+          "ms": 79.382
         },
         {
           "shape": "records",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 78.896
+          "ms": 79.193
         },
         {
           "shape": "records",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 80.198
+          "ms": 80.299
         },
         {
           "shape": "records",
           "operation": "structuredClone",
           "repeats": 1,
-          "ms": 80.507
+          "ms": 79.988
         }
       ],
-      "medianMs": 80.02,
+      "medianMs": 79.93,
       "rangeMs": [
-        78.9,
-        80.51
+        79.19,
+        80.3
       ],
       "relativeToStructuredClone": 1
     },
@@ -188,39 +189,39 @@
           "shape": "records",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 36.279
+          "ms": 27.36
         },
         {
           "shape": "records",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 37.009
+          "ms": 28.402
         },
         {
           "shape": "records",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 37.107
+          "ms": 27.013
         },
         {
           "shape": "records",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 36.444
+          "ms": 28.23
         },
         {
           "shape": "records",
           "operation": "deep-copy",
           "repeats": 1,
-          "ms": 36.996
+          "ms": 27.51
         }
       ],
-      "medianMs": 37,
+      "medianMs": 27.51,
       "rangeMs": [
-        36.28,
-        37.11
+        27.01,
+        28.4
       ],
-      "relativeToStructuredClone": 0.46
+      "relativeToStructuredClone": 0.34
     },
     {
       "shape": "records",
@@ -230,39 +231,39 @@
           "shape": "records",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 33.695
+          "ms": 24.771
         },
         {
           "shape": "records",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 34.058
+          "ms": 25.276
         },
         {
           "shape": "records",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 33.91
+          "ms": 24.623
         },
         {
           "shape": "records",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 33.202
+          "ms": 24.476
         },
         {
           "shape": "records",
           "operation": "deep-copy-no-cycles",
           "repeats": 1,
-          "ms": 33.978
+          "ms": 24.212
         }
       ],
-      "medianMs": 33.91,
+      "medianMs": 24.62,
       "rangeMs": [
-        33.2,
-        34.06
+        24.21,
+        25.28
       ],
-      "relativeToStructuredClone": 0.42
+      "relativeToStructuredClone": 0.31
     },
     {
       "shape": "deep",
@@ -318,37 +319,37 @@
           "shape": "deep",
           "operation": "deep-copy",
           "repeats": 5,
-          "ms": 0.477
+          "ms": 0.51
         },
         {
           "shape": "deep",
           "operation": "deep-copy",
           "repeats": 5,
-          "ms": 0.468
+          "ms": 0.496
         },
         {
           "shape": "deep",
           "operation": "deep-copy",
           "repeats": 5,
-          "ms": 0.546
+          "ms": 0.511
         },
         {
           "shape": "deep",
           "operation": "deep-copy",
           "repeats": 5,
-          "ms": 0.519
+          "ms": 0.419
         },
         {
           "shape": "deep",
           "operation": "deep-copy",
           "repeats": 5,
-          "ms": 0.539
+          "ms": 0.51
         }
       ],
-      "medianMs": 0.52,
+      "medianMs": 0.51,
       "rangeMs": [
-        0.47,
-        0.55
+        0.42,
+        0.51
       ],
       "relativeToStructuredClone": null
     },
@@ -360,19 +361,7 @@
           "shape": "deep",
           "operation": "deep-copy-no-cycles",
           "repeats": 5,
-          "ms": 0.121
-        },
-        {
-          "shape": "deep",
-          "operation": "deep-copy-no-cycles",
-          "repeats": 5,
-          "ms": 0.12
-        },
-        {
-          "shape": "deep",
-          "operation": "deep-copy-no-cycles",
-          "repeats": 5,
-          "ms": 0.117
+          "ms": 0.111
         },
         {
           "shape": "deep",
@@ -384,13 +373,25 @@
           "shape": "deep",
           "operation": "deep-copy-no-cycles",
           "repeats": 5,
-          "ms": 0.117
+          "ms": 0.112
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.191
+        },
+        {
+          "shape": "deep",
+          "operation": "deep-copy-no-cycles",
+          "repeats": 5,
+          "ms": 0.113
         }
       ],
-      "medianMs": 0.12,
+      "medianMs": 0.11,
       "rangeMs": [
-        0.12,
-        0.12
+        0.11,
+        0.19
       ],
       "relativeToStructuredClone": null
     }
