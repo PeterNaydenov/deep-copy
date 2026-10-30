@@ -1,6 +1,6 @@
 {
   "name": "@peter.naydenov/deep-copy",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Immutable copies of javascript objects and arrays",
   "main": "src/main.js",
   "type": "module",
