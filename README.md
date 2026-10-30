@@ -1,202 +1,146 @@
-# Deep copy ( @peter.naydenov/deep-copy)
+# @peter.naydenov/deep-copy
 
-Creates an immutable copies of javascript data structures.
+Copy JavaScript data structures without recursion. The library is designed primarily for data-only objects and arrays, such as values produced by `JSON.parse`. It has no runtime dependencies.
+
+For data made of ordinary objects, arrays, strings, numbers, booleans and `null`, the copy has its own objects and arrays. Changing a copied container does not change the original. The copy is mutable; “immutable copy” means the original data remains independent, not that the result is frozen.
+
+Other JavaScript values are supported for convenience. Their behavior is described below, but full cloning of those values is outside the library's primary purpose. Use them at your own risk: some values are shared with the original, and getters or proxies can execute code or throw during copying.
 
 ## Installation
 
-Install for node.js projects by writing in your terminal:
-```
+```sh
 npm install @peter.naydenov/deep-copy
 ```
 
-Once it has been installed, it can be used by writing this line of JavaScript:
-
-```js
-let deepCopy = require ( '@peter.naydenov/deep-copy' )
-```
-or
+ES modules:
 
 ```js
 import deepCopy from '@peter.naydenov/deep-copy'
 ```
 
-
-
-**Installation for browsers**: Execute script '`npm run build`' in the console. Then grab file "`dist/deep-copy.umd.js`" and put it inside the project. Request the file from HTML page. Global variable 'deepCopy' is available for use.
-
-
-            Note:
-            The library needs 'Map' (ES2015). If support for old browsers 
-            is required, add a polyfill for 'Map'.
-
-
-
-
-
-
-
-
-
-
-# How it use it?
+CommonJS:
 
 ```js
-let 
-      x = {
-              ls   : [ 1,2,3 ]
-            , name : 'Peter'
-            , props : {
-                          eyeColor: 'blue'
-                        , age     : 47
-                        , height  : 176
-                        , sizes : [12,33,12,21]
-                    }
-            }
-    , r = deepCopy ( x )
-    ;
-r.props.sizes.push ( 66 )   // will not change x.props.sizes
-x.props.sizes[0] = 222222   // will not change r.props.sizes[0]
-x.props.test = 'hello'      // will not create `test` in r.props
-// Data-structures 'x' and 'r' are completely decoupled
+const deepCopy = require('@peter.naydenov/deep-copy')
 ```
 
+The package includes TypeScript declarations for the ES module import. They infer the input's type for the copy and expose the optional `Settings` type:
 
+```ts
+import deepCopy, { type Settings } from '@peter.naydenov/deep-copy'
 
+const settings: Settings = { detectCycles: false }
+const copy = deepCopy({ items: [1, 2] }, settings)
+copy.items.push(3)
+```
 
+The inferred return type is intended for data-only structures. It cannot describe changes such as class instances becoming plain objects or symbol keys being omitted. The CommonJS `require` entry continues to work in JavaScript but does not include a separate CommonJS declaration.
 
-## What is copied and what is kept?
+For a browser, copy `dist/deep-copy.umd.js` from the installed package into your project and load it as a classic script. It exposes `deepCopy` as a global function:
 
-Plain objects and arrays are copied. Every own enumerable key of a plain
-object is copied, and the gaps of a sparse array stay empty.
+```html
+<script src="./deep-copy.umd.js"></script>
+<script>
+  const copy = deepCopy({ items: [1, 2, 3] })
+</script>
+```
 
-Values that hold their data outside of own enumerable keys are kept by
-reference. Nothing of them is lost:
+The distribution bundles target ES2015 syntax and require standard ES2015 APIs, including `Map`. Use suitable polyfills for environments missing these APIs. The UMD `.js` file is intended for browser scripts; use the package entry point or `dist/deep-copy.cjs` for CommonJS.
 
-| Value | Result |
-| --- | --- |
-| number, bigint, string, boolean, null, undefined, symbol | copied as it is |
-| function | kept by reference |
-| plain object, array | copied |
-| Date, RegExp, Map, Set, WeakMap, WeakSet, ArrayBuffer, DataView, typed array, DOM node | kept by reference |
-| class instance | copied as a plain object |
-
-A container that is used in two places is copied twice. Both copies are
-independent of the source and of each other.
-
-A circular reference points to the copy of the container it closes the
-circle with:
+## Usage
 
 ```js
-let x = { name:'root' }
-x.self = x
-
-let r = deepCopy ( x )
-r.self === r      // true
+const original = { items: [1, 2], details: { name: 'Peter' } }
+const copy = deepCopy(original)
+copy.items.push(3)             // original.items is still [1, 2]
+copy.details.name = 'Alex'     // original.details.name is still 'Peter'
 ```
 
-The check for circular references can be switched off when the data is
-known to be acyclic:
+### What is copied
+
+For data-only structures, arrays and ordinary objects are copied at every level, including their own enumerable string keys. Values from `JSON.parse` without a reviver have no symbol keys, getters, functions or circular references. JSON keys such as `"__proto__"` are copied as data properties.
+
+The following behavior extends the library's usefulness beyond JSON-style data. It is provided for convenience; check whether it fits your data before relying on the copy being independent:
+
+- Sparse array length and holes are preserved. Symbol-keyed and non-enumerable properties are not copied.
+- Class instances with the ordinary `[object Object]` tag are copied into plain objects. Their prototype, methods, private fields, non-enumerable properties, and property descriptors are not preserved. Objects with a null prototype also become plain objects.
+- Functions and other tagged objects, including `Date`, `RegExp`, `Map`, `Set`, typed arrays, `ArrayBuffer`, `Error`, `URL`, promises and DOM nodes, are retained **by reference**, including when they come from another JavaScript realm. Mutating one through the result also changes the original. Values with a custom `Symbol.toStringTag` can be classified as tagged objects and retained by reference.
+- Primitive values are returned as they are. Getters on copied enumerable properties are called. Proxies and custom getters may have side effects or throw.
+- Except for `"__proto__"`, properties are assigned normally. If built-in prototypes have been modified to add setters or non-writable properties, copying can invoke a setter, lose a property, or throw. Use unmodified standard prototypes for data-only inputs.
+
+The copy is not frozen. It is independent of the original only for the containers that are copied. In particular, values inside a retained `Map` or `Set` are not traversed.
+
+### Cycles and shared references
+
+Circular references are preserved by default:
 
 ```js
-let r = deepCopy ( x, { detectCycles:false } )
+const original = { name: 'root' }
+original.self = original
+const copy = deepCopy(original)
+console.log(copy.self === copy) // true
 ```
 
-Without the check, the copy of a circular structure does not end. It fills
-the memory instead.
+A non-circular container used in two places is copied separately at each occurrence. This preserves the existing behavior, but can cause exponential time and memory use for a graph with many shared references.
 
-The traversal is iterative, so the depth of the data is bounded by memory
-and not by the call stack.
+For data known to be acyclic, including data directly returned by `JSON.parse` without a reviver, cycle checks can be disabled:
 
+```js
+const data = JSON.parse('{"items":[1,2]}')
+const copy = deepCopy(data, { detectCycles: false })
+```
 
+With `detectCycles: false`, copying a cycle does not terminate and can exhaust memory.
 
-## Options
-
-| Option | Default | Description |
+| Option | Default | Effect |
 | --- | --- | --- |
-| `detectCycles` | `true` | `false` skips the circular-reference checks and their bookkeeping. Use it when the data is known to be acyclic. |
-
-
+| `detectCycles` | `true` | Detect ancestor cycles. Set to `false` only when the data is known to be acyclic. |
 
 ## Performance
 
-The traversal keeps the containers on an explicit stack. There are no
-generator functions and no recursion, so a copy allocates one object per
-copied container and nothing else.
+Traversal uses an explicit stack rather than recursion, so nesting depth is bounded by available memory rather than the call stack. It allocates output containers, traversal stacks, key arrays and, depending on options and depth, maps for tracking references.
 
-The measurements below use Node v26.12.0 on macOS arm64. Each sample ran
-in a fresh Node process with three warmup copies and explicit garbage
-collection outside the timer. Operations rotated between samples and the
-table shows the median of five samples. Deep-chain samples averaged five
-copies. The [benchmark script](benchmarks/speed.mjs) and
-[complete samples](benchmarks/speed.results.json) are in the repository:
+The traversal copies enumerable string keys and skips symbol keys. It handles `"__proto__"` specially and uses ordinary assignment for other keys. Disabling cycle detection skips cycle bookkeeping when data is known to be acyclic.
+
+### Release comparison
+
+The following measurements compare the `v2.0.0` and `v3.0.1` repository tags with version 3.0.2. They use Node v26.12.0 on macOS with an Apple M3 Max. Each speed result is the median of five samples; every sample ran in a fresh process with three warmup copies. The deep-chain timings average 20 copies per sample. All inputs are acyclic data-only structures.
+
+| Version | Flat object: 1 million properties | 100,000 nested records | 4,000-level chain |
+| --- | ---: | ---: | ---: |
+| 2.0.0 | 262.70 ms | 72.62 ms | 0.436 ms |
+| 3.0.1 | 223.97 ms | 36.37 ms | 0.415 ms |
+| 3.0.2 | 219.47 ms | 27.23 ms | 0.412 ms |
+| 3.0.2, cycle checks off | 224.14 ms | 24.40 ms | 0.126 ms |
+
+On these inputs, 3.0.2 is about 25% faster than 3.0.1 for nested records. The small differences on the flat and deep inputs are within the sample ranges. Version 2.0.0 does not support circular references; disabling cycle checks in 3.0.2 is safe only for acyclic inputs.
+
+For the nested records, the copy retained 29.12 MiB with 3.0.1 and 17.56 MiB with 3.0.2 after garbage collection, based on the median of three fresh-process samples. The flat copies retained approximately 48 MiB in each version. Results depend on the runtime, machine and data shape; measure your own workload. The [complete release comparison](https://github.com/PeterNaydenov/deep-copy/blob/master/benchmarks/release-comparison.results.json) includes samples, ranges and source hashes. The measured 3.0.2 source differs from the current source only in JSDoc comments; the copying logic is unchanged.
+
+The repository also includes benchmarks for the current source against `structuredClone` and for memory usage:
 
 ```sh
 npm run benchmark:speed
-```
-
-The inputs contain no circular references:
-
-- **Flat object:** 1,000,000 properties named `key0` through `key999999`, each holding its index as a number.
-- **Nested records:** an array of 100,000 records shaped as `{ id, name:'item', metadata:{ active:true, score:id, tags:['a','b'] } }`. There are 600,000 leaf values.
-- **Deep chain:** 4,000 nested `child` links ending in `{ leaf:1 }`. There is one leaf value.
-
-| Operation | Flat object | Nested records | Deep chain |
-| --- | ---: | ---: | ---: |
-| `structuredClone` | 500.45 | 80.51 | Failed¹ |
-| `deep-copy` v2.0.0 | 261.07 | 74.11 | 0.61 |
-| `deep-copy` current | 227.41 | 36.86 | 0.53 |
-| `deep-copy` current, `detectCycles:false` | 224.34 | 33.87 | 0.12 |
-
-Times are milliseconds for one complete copy.
-
-¹ `structuredClone` threw `RangeError: Maximum call stack size exceeded` on the 4,000-level chain. On this runtime it completed 2,220 levels and failed at 2,221. `deep-copy` uses a work stack instead of recursion, so depth is bounded by memory.
-
-The copy of a flat object is dominated by the cost of creating an object
-with one million properties. `structuredClone` is about twice as slow on
-that shape. The nested records show the effect of the traversal itself:
-without the generator objects of the previous version, the copy needs about
-half the temporary memory and runs twice as fast.
-
-The circular-reference checks cost little on a flat object, because there
-is only one container to keep track of. They cost about 8% on the nested
-records, where the ancestors of every container have to be tracked. The
-deep chain shows the largest relative difference, because every level of
-it needs a lookup, but the difference stays below half a millisecond.
-Switch the checks off when the data is known to be acyclic.
-
-The [memory benchmark](benchmarks/memory.mjs) measures the heap of the same
-three inputs in fresh processes:
-
-```sh
 npm run benchmark:memory
 ```
 
-| Structure | Input heap | Temporary heap of v2.0.0 | Temporary heap now | Retained copy |
-| --- | ---: | ---: | ---: | ---: |
-| Flat object | 77.76 | 108.46 | 108.46 | 48.01 |
-| Nested records | 12.97 | 82.55 | 42.35 | 29.12 |
-| Deep chain | 0.13 | 1.13 | 0.88 | 0.22 |
+These scripts write their measurements and source hash to `benchmarks/`. Comparisons with `structuredClone` are workload-specific: the two functions do not have identical behavior for built-ins or shared references.
 
-All values are MiB. The temporary heap is the extra heap right after the
-copy, before a collection. It holds the result and everything the
-traversal left behind. The retained copy is the extra heap that stays
-while the result is kept. These figures describe one machine and one
-runtime; measure your own workload.
+## Development
 
+```sh
+npm install
+npm test
+npm run cover
+npm run build
+```
 
+`npm run build` generates the ESM, CommonJS and UMD builds and emits declarations from the JSDoc into `include/`. The test command also checks the TypeScript declarations. `npm pack` and `npm publish` run the build first through the `prepack` script.
 
 ## Links
+
 - [Release history](Changelog.md)
-- [Walk: A deep copy with a callbacks for modifying values.](https://github.com/PeterNaydenov/walk)
-- [Dt-toolbox: Execute more complex operations over data structures.](https://github.com/PeterNaydenov/dt-toolbox)
+- [Walk: deep copy with callbacks for modifying values](https://github.com/PeterNaydenov/walk)
+- [Dt-toolbox: operations over data structures](https://github.com/PeterNaydenov/dt-toolbox)
 
-
-
-## Credits
-'@peter.naydenov/deep-copy' was created and supported by Peter Naydenov.
-
-
-
-## License
-'@peter.naydenov/deep-copy' is released under the [MIT License](http://opensource.org/licenses/MIT).
-
+Created by Peter Naydenov. Released under the [MIT License](LICENSE).
