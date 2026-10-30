@@ -1,15 +1,18 @@
 {
   "name": "@peter.naydenov/deep-copy",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Immutable copies of javascript objects and arrays",
-  "main": "src/main.js",
+  "main": "./dist/deep-copy.cjs",
   "type": "module",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha test && npm run test:types",
     "cover": "c8 mocha test",
-    "build": "vite build",
+    "build": "vite build && npm run build:types",
     "benchmark:speed": "node benchmarks/speed.mjs",
-    "benchmark:memory": "node benchmarks/memory.mjs"
+    "benchmark:memory": "node benchmarks/memory.mjs",
+    "prepack": "npm run build",
+    "build:types": "tsc --project tsconfig.json",
+    "test:types": "tsc --ignoreConfig --noEmit --strict --skipLibCheck --module nodenext --target es2022 test/types/esm.mts"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
     "c8": "12.0.0",
     "chai": "6.3.0",
     "mocha": "12.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.3.5"
   },
   "overrides": {
@@ -44,5 +48,22 @@
   "browserslist": "> 2%, not dead",
   "allowScripts": {
     "fsevents@2.3.3": true
-  }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./include/main.d.ts",
+        "default": "./dist/deep-copy.esm.mjs"
+      },
+      "require": "./dist/deep-copy.cjs"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "src",
+    "dist",
+    "include",
+    "Changelog.md"
+  ],
+  "types": "./include/main.d.ts"
 }
