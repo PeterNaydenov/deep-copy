@@ -1,0 +1,526 @@
+{
+  "environment": {
+    "node": "v26.12.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M3 Max",
+    "samples": 5,
+    "warmups": 3,
+    "unit": "milliseconds per copy",
+    "measuredAt": "2026-10-30T20:46:51.990Z"
+  },
+  "implementations": {
+    "2.0.0": {
+      "source": "git tag v2.0.0, src/main.js",
+      "sha256": "95bc6dadb80df9282a771ce4f980d7129e641c18f55aa7646abcbdb3815edfbb"
+    },
+    "3.0.1": {
+      "source": "git tag v3.0.1, src/main.js",
+      "sha256": "b6bc29e5665987898e096db937320b8d33daf92b8b38a7e4fbeac6e679b9054d"
+    },
+    "3.0.2": {
+      "source": "working tree src/main.js",
+      "sha256": "b12429b2bc683689cb78c02eb2bf8c32b91b1515fd5089520ef901213dd51107",
+      "sourceNote": "After measurement, only JSDoc comments in src/main.js were updated; runtime code is unchanged."
+    }
+  },
+  "inputs": {
+    "flat": "object with 1,000,000 numeric properties",
+    "records": "array of 100,000 records, each with nested metadata and tags",
+    "deep": "4,000 nested child links ending in { leaf:1 }"
+  },
+  "speed": {
+    "samplesPerInput": 5,
+    "warmupsPerSample": 3,
+    "deepCopiesPerSample": 20,
+    "unit": "milliseconds per copy",
+    "results": [
+      {
+        "shape": "flat",
+        "name": "2.0.0",
+        "medianMs": 262.703125,
+        "rangeMs": [
+          252.1959159999999,
+          273.5725420000001
+        ],
+        "samples": [
+          263.16470900000013,
+          262.703125,
+          252.1959159999999,
+          273.5725420000001,
+          256.576542
+        ]
+      },
+      {
+        "shape": "flat",
+        "name": "3.0.1",
+        "medianMs": 223.96641699999986,
+        "rangeMs": [
+          216.01366699999994,
+          231.7315000000001
+        ],
+        "samples": [
+          216.01366699999994,
+          220.43604200000004,
+          227.024541,
+          231.7315000000001,
+          223.96641699999986
+        ]
+      },
+      {
+        "shape": "flat",
+        "name": "3.0.2",
+        "medianMs": 219.4692910000001,
+        "rangeMs": [
+          217.33216600000014,
+          233.38479199999983
+        ],
+        "samples": [
+          217.33216600000014,
+          219.7031669999999,
+          218.54895800000008,
+          233.38479199999983,
+          219.4692910000001
+        ]
+      },
+      {
+        "shape": "flat",
+        "name": "3.0.2 without cycle checks",
+        "medianMs": 224.13858299999993,
+        "rangeMs": [
+          217.1864169999999,
+          261.48125000000005
+        ],
+        "samples": [
+          217.1864169999999,
+          219.13137499999993,
+          224.13858299999993,
+          261.48125000000005,
+          224.40158399999996
+        ]
+      },
+      {
+        "shape": "records",
+        "name": "2.0.0",
+        "medianMs": 72.62487499999997,
+        "rangeMs": [
+          72.30208299999998,
+          74.250584
+        ],
+        "samples": [
+          72.70137499999998,
+          72.30208299999998,
+          74.250584,
+          72.62487499999997,
+          72.48862500000001
+        ]
+      },
+      {
+        "shape": "records",
+        "name": "3.0.1",
+        "medianMs": 36.37104099999999,
+        "rangeMs": [
+          36.22370799999999,
+          36.763959
+        ],
+        "samples": [
+          36.39908299999999,
+          36.22370799999999,
+          36.763959,
+          36.37104099999999,
+          36.26804200000001
+        ]
+      },
+      {
+        "shape": "records",
+        "name": "3.0.2",
+        "medianMs": 27.23041600000002,
+        "rangeMs": [
+          27.001374999999996,
+          27.48112499999999
+        ],
+        "samples": [
+          27.250583000000006,
+          27.038250000000005,
+          27.001374999999996,
+          27.48112499999999,
+          27.23041600000002
+        ]
+      },
+      {
+        "shape": "records",
+        "name": "3.0.2 without cycle checks",
+        "medianMs": 24.39999999999999,
+        "rangeMs": [
+          23.92308299999999,
+          25.858958999999984
+        ],
+        "samples": [
+          25.858958999999984,
+          23.92308299999999,
+          24.26704199999999,
+          24.39999999999999,
+          25.711084000000014
+        ]
+      },
+      {
+        "shape": "deep",
+        "name": "2.0.0",
+        "medianMs": 0.4355749999999999,
+        "rangeMs": [
+          0.4068396000000002,
+          0.45208539999999997
+        ],
+        "samples": [
+          0.45208539999999997,
+          0.4119396000000002,
+          0.4355749999999999,
+          0.4068396000000002,
+          0.44184585000000015
+        ]
+      },
+      {
+        "shape": "deep",
+        "name": "3.0.1",
+        "medianMs": 0.41497294999999995,
+        "rangeMs": [
+          0.41031875000000007,
+          0.43861459999999985
+        ],
+        "samples": [
+          0.4142687499999999,
+          0.41031875000000007,
+          0.4167124999999999,
+          0.41497294999999995,
+          0.43861459999999985
+        ]
+      },
+      {
+        "shape": "deep",
+        "name": "3.0.2",
+        "medianMs": 0.4122041499999998,
+        "rangeMs": [
+          0.4070062499999999,
+          0.4334875
+        ],
+        "samples": [
+          0.4334875,
+          0.4070062499999999,
+          0.4122041499999998,
+          0.4189604000000001,
+          0.40948329999999994
+        ]
+      },
+      {
+        "shape": "deep",
+        "name": "3.0.2 without cycle checks",
+        "medianMs": 0.12563335000000003,
+        "rangeMs": [
+          0.12241874999999994,
+          0.12749164999999998
+        ],
+        "samples": [
+          0.12563335000000003,
+          0.12460834999999992,
+          0.12726664999999998,
+          0.12241874999999994,
+          0.12749164999999998
+        ]
+      }
+    ]
+  },
+  "memory": {
+    "samplesPerInput": 3,
+    "unit": "MiB (1024 * 1024 bytes)",
+    "results": [
+      {
+        "shape": "flat",
+        "mode": "v2",
+        "retainedMiB": 48.004615783691406,
+        "afterCopyMiB": 108.45824432373047,
+        "samples": [
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76025390625,
+            "afterCopyExtraHeapMiB": 108.45824432373047,
+            "retainedExtraHeapMiB": 48.004615783691406,
+            "afterReleaseExtraHeapMiB": 0.0053863525390625,
+            "processPeakRssMiB": 278.015625
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.45824432373047,
+            "retainedExtraHeapMiB": 48.004615783691406,
+            "afterReleaseExtraHeapMiB": 0.0053863525390625,
+            "processPeakRssMiB": 277.9375
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76025390625,
+            "afterCopyExtraHeapMiB": 108.45824432373047,
+            "retainedExtraHeapMiB": 48.004615783691406,
+            "afterReleaseExtraHeapMiB": 0.0053863525390625,
+            "processPeakRssMiB": 277.828125
+          }
+        ]
+      },
+      {
+        "shape": "flat",
+        "mode": "v301",
+        "retainedMiB": 48.01226806640625,
+        "afterCopyMiB": 108.46336364746094,
+        "samples": [
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.515625
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.125
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.203125
+          }
+        ]
+      },
+      {
+        "shape": "flat",
+        "mode": "v302",
+        "retainedMiB": 48.01226806640625,
+        "afterCopyMiB": 108.46336364746094,
+        "samples": [
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.296875
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.46875
+          },
+          {
+            "shape": "flat",
+            "inputHeapMiB": 77.76018524169922,
+            "afterCopyExtraHeapMiB": 108.46336364746094,
+            "retainedExtraHeapMiB": 48.01226806640625,
+            "afterReleaseExtraHeapMiB": 0.00982666015625,
+            "processPeakRssMiB": 278.015625
+          }
+        ]
+      },
+      {
+        "shape": "records",
+        "mode": "v2",
+        "retainedMiB": 29.12420654296875,
+        "afterCopyMiB": 83.10090637207031,
+        "samples": [
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 83.412109375,
+            "retainedExtraHeapMiB": 29.12420654296875,
+            "afterReleaseExtraHeapMiB": 0.05049896240234375,
+            "processPeakRssMiB": 204.265625
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 81.84716033935547,
+            "retainedExtraHeapMiB": 29.124473571777344,
+            "afterReleaseExtraHeapMiB": 0.0507659912109375,
+            "processPeakRssMiB": 207.328125
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 83.10090637207031,
+            "retainedExtraHeapMiB": 29.12420654296875,
+            "afterReleaseExtraHeapMiB": 0.05049896240234375,
+            "processPeakRssMiB": 204.453125
+          }
+        ]
+      },
+      {
+        "shape": "records",
+        "mode": "v301",
+        "retainedMiB": 29.115936279296875,
+        "afterCopyMiB": 42.36927032470703,
+        "samples": [
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 42.389381408691406,
+            "retainedExtraHeapMiB": 29.115936279296875,
+            "afterReleaseExtraHeapMiB": 0.04219818115234375,
+            "processPeakRssMiB": 137.1875
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 42.33549499511719,
+            "retainedExtraHeapMiB": 29.115936279296875,
+            "afterReleaseExtraHeapMiB": 0.04219818115234375,
+            "processPeakRssMiB": 137.328125
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 42.36927032470703,
+            "retainedExtraHeapMiB": 29.115936279296875,
+            "afterReleaseExtraHeapMiB": 0.04219818115234375,
+            "processPeakRssMiB": 137.203125
+          }
+        ]
+      },
+      {
+        "shape": "records",
+        "mode": "v302",
+        "retainedMiB": 17.56157684326172,
+        "afterCopyMiB": 26.33228302001953,
+        "samples": [
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 26.35761260986328,
+            "retainedExtraHeapMiB": 17.56157684326172,
+            "afterReleaseExtraHeapMiB": 0.0421905517578125,
+            "processPeakRssMiB": 117.578125
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 26.33228302001953,
+            "retainedExtraHeapMiB": 17.56157684326172,
+            "afterReleaseExtraHeapMiB": 0.0421905517578125,
+            "processPeakRssMiB": 118.890625
+          },
+          {
+            "shape": "records",
+            "inputHeapMiB": 12.97357177734375,
+            "afterCopyExtraHeapMiB": 26.260108947753906,
+            "retainedExtraHeapMiB": 17.56157684326172,
+            "afterReleaseExtraHeapMiB": 0.0421905517578125,
+            "processPeakRssMiB": 117.515625
+          }
+        ]
+      },
+      {
+        "shape": "deep",
+        "mode": "v2",
+        "retainedMiB": 0.22430419921875,
+        "afterCopyMiB": 1.1178665161132812,
+        "samples": [
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 1.1125564575195312,
+            "retainedExtraHeapMiB": 0.22430419921875,
+            "afterReleaseExtraHeapMiB": 0.0199127197265625,
+            "processPeakRssMiB": 48.8125
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 1.1178665161132812,
+            "retainedExtraHeapMiB": 0.22430419921875,
+            "afterReleaseExtraHeapMiB": 0.0199127197265625,
+            "processPeakRssMiB": 48.8125
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 1.126953125,
+            "retainedExtraHeapMiB": 0.22430419921875,
+            "afterReleaseExtraHeapMiB": 0.0199127197265625,
+            "processPeakRssMiB": 47.8125
+          }
+        ]
+      },
+      {
+        "shape": "deep",
+        "mode": "v301",
+        "retainedMiB": 0.22164154052734375,
+        "afterCopyMiB": 0.881805419921875,
+        "samples": [
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.881805419921875,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.765625
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.881805419921875,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.796875
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.881805419921875,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.609375
+          }
+        ]
+      },
+      {
+        "shape": "deep",
+        "mode": "v302",
+        "retainedMiB": 0.22164154052734375,
+        "afterCopyMiB": 0.7624664306640625,
+        "samples": [
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.8818206787109375,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.6875
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.7624664306640625,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.96875
+          },
+          {
+            "shape": "deep",
+            "inputHeapMiB": 0.13063812255859375,
+            "afterCopyExtraHeapMiB": 0.7624664306640625,
+            "retainedExtraHeapMiB": 0.22164154052734375,
+            "afterReleaseExtraHeapMiB": 0.017608642578125,
+            "processPeakRssMiB": 48.609375
+          }
+        ]
+      }
+    ]
+  }
+}
