@@ -1,1 +1,71 @@
-function e(e){if(null==e)return 0;if("object"!=typeof e)return 0;if(Array.isArray(e))return 2;const t=Object.getPrototypeOf(e);return null===t||t===Object.prototype?1:e.nodeType||e instanceof Date||e instanceof RegExp||e instanceof Map||e instanceof Set||e instanceof WeakMap||e instanceof WeakSet||e instanceof ArrayBuffer||e instanceof DataView||ArrayBuffer.isView(e)?0:1}function t(e,t,n){Object.defineProperty(e,t,{value:n,enumerable:!0,writable:!0,configurable:!0})}function n(n,o){const r=e(n);if(0===r)return n;const f=!1!==o?.detectCycles,i=2===r?[]:{},l=[n],c=[i],s=[];let u=0,a=null;for(;l.length;){const n=l.pop(),o=c.pop();if(null===n){a&&a.delete(s[u-2]),u-=2,u<=64&&(a=null);continue}if(f){if(s[u]=n,s[u+1]=o,u+=2,u>64)if(a)a.set(n,o);else{a=new Map;for(let e=0;e<u;e+=2)a.set(s[e],s[e+1])}l.push(null),c.push(null)}const r=Object.keys(n),i=r.length;for(let p=0;p<i;p++){const i=r[p],y=n[i];if(null===y||"object"!=typeof y){"__proto__"===i?t(o,i,y):o[i]=y;continue}let _,b=!1;if(Array.isArray(y))_=[];else{const t=Object.getPrototypeOf(y);null===t||t===Object.prototype?_={}:0===e(y)?(_=y,b=!0):_={}}if(b)"__proto__"===i?t(o,i,y):o[i]=y;else{if(f){let e;if(a)e=a.get(y);else{e=void 0;for(let t=u-2;t>=0;t-=2)if(s[t]===y){e=s[t+1];break}}if(void 0!==e){"__proto__"===i?t(o,i,e):o[i]=e;continue}}"__proto__"===i?t(o,i,_):o[i]=_,l.push(y),c.push(_)}}}return i}export{n as default};
+function e(e) {
+	if (typeof e != "object" || !e) return 0;
+	if (Array.isArray(e)) return 2;
+	let t = Object.getPrototypeOf(e);
+	return t === null || t === Object.prototype ? 1 : e.nodeType || e instanceof Date || e instanceof RegExp || e instanceof Map || e instanceof Set || e instanceof WeakMap || e instanceof WeakSet || e instanceof ArrayBuffer || e instanceof DataView || ArrayBuffer.isView(e) ? 0 : 1;
+}
+function t(e, t, n) {
+	Object.defineProperty(e, t, {
+		value: n,
+		enumerable: !0,
+		writable: !0,
+		configurable: !0
+	});
+}
+function n(n, r) {
+	let i = e(n);
+	if (i === 0) return n;
+	let a = (r == null ? void 0 : r.detectCycles) !== !1, o = i === 2 ? [] : {}, s = [n], c = [o], l = [], u = 0, d = null;
+	for (; s.length;) {
+		let n = s.pop(), r = c.pop();
+		if (n === null) {
+			d && d.delete(l[u - 2]), u -= 2, u <= 64 && (d = null);
+			continue;
+		}
+		if (a) {
+			if (l[u] = n, l[u + 1] = r, u += 2, u > 64) {
+				if (d) d.set(n, r);
+				else {
+					d = /* @__PURE__ */ new Map();
+					for (let e = 0; e < u; e += 2) d.set(l[e], l[e + 1]);
+				}
+			}
+			s.push(null), c.push(null);
+		}
+		let i = Object.keys(n), o = i.length;
+		for (let f = 0; f < o; f++) {
+			let o = i[f], p = n[o];
+			if (typeof p != "object" || !p) {
+				o === "__proto__" ? t(r, o, p) : r[o] = p;
+				continue;
+			}
+			let m, h = !1;
+			if (Array.isArray(p)) m = [];
+			else {
+				let t = Object.getPrototypeOf(p);
+				t === null || t === Object.prototype ? m = {} : e(p) === 0 ? (m = p, h = !0) : m = {};
+			}
+			if (h) o === "__proto__" ? t(r, o, p) : r[o] = p;
+			else {
+				if (a) {
+					let e;
+					if (d) e = d.get(p);
+					else {
+						e = void 0;
+						for (let t = u - 2; t >= 0; t -= 2) if (l[t] === p) {
+							e = l[t + 1];
+							break;
+						}
+					}
+					if (e !== void 0) {
+						o === "__proto__" ? t(r, o, e) : r[o] = e;
+						continue;
+					}
+				}
+				o === "__proto__" ? t(r, o, m) : r[o] = m, s.push(p), c.push(m);
+			}
+		}
+	}
+	return o;
+}
+export { n as default };
