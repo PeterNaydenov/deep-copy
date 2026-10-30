@@ -127,7 +127,7 @@ describe ( 'Deep copy - edge cases', () => {
 
 
     it ( 'Keep a DOM node by reference', () => {
-                const node = Object.create ( { nodeType:1, nodeName:'DIV' } )
+                const node = Object.create ( { nodeType:1, nodeName:'DIV', [Symbol.toStringTag]:'HTMLDivElement' } )
                 const r = deepCopy ( { node } )
                 expect ( r.node ).to.be.equal ( node )
                 expect ( r.node.nodeName ).to.be.equal ( 'DIV' )
