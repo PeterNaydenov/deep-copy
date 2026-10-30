@@ -1,12 +1,11 @@
 /**
  *     deepCopy
  *
- *     Creates an immutable copy of a javascript data structure.
+ *     Copies JavaScript objects and arrays, retaining tagged values by reference.
  *
  *     The traversal is iterative. Containers are kept on an explicit stack
- *     instead of being copied through nested generator functions, so the
- *     cost of a copy does not grow with the depth of the data and the
- *     depth of the data is bounded by memory instead of by the call stack.
+ *     instead of being copied recursively, so depth is bounded by available
+ *     memory instead of by the call stack.
  *
  *     History notes:
  *        - Development started on January 8th, 2022
@@ -17,15 +16,12 @@
 
 
 /**
- *  Optional controls for the traversal.
+ * Options for copying a data structure.
  *
- *  @typedef {object} Settings
- *  @property {boolean} [detectCycles] - Defaults to true. Only false skips the
- *  circular-reference checks and their bookkeeping. Use it when the data is
- *  known to be acyclic. With the checks off, a circular structure does not
- *  end the copy; it fills the memory instead.
+ * @typedef {object} Settings
+ * @property {boolean} [detectCycles=true] Detect circular references. Set to
+ * false only for acyclic data; copying a cycle without checks does not finish.
  */
-
 
 
 // Ancestors of the container being visited are found with a linear scan
@@ -47,25 +43,16 @@ function findType ( x ) {
     const proto = Object.getPrototypeOf ( x );
     if ( proto === null || proto === Object.prototype )   return OBJECT // plain object
 
-    // Built-in object types keep their data outside the own-enumerable-string-key
-    // model used here. They are preserved by reference, so nothing is lost.
-    if ( x.nodeType )                                       return SIMPLE // DOM node
-    if ( x instanceof Date )                                return SIMPLE
-    if ( x instanceof RegExp )                              return SIMPLE
-    if ( x instanceof Map )                                 return SIMPLE
-    if ( x instanceof Set )                                 return SIMPLE
-    if ( x instanceof WeakMap )                             return SIMPLE
-    if ( x instanceof WeakSet )                             return SIMPLE
-    if ( x instanceof ArrayBuffer )                         return SIMPLE
-    if ( x instanceof DataView )                            return SIMPLE
-    if ( ArrayBuffer.isView ( x ) )                         return SIMPLE // Typed arrays
-    return OBJECT // Class instances and other exotic objects
+    // Use the built-in tag rather than instanceof, which fails across realms.
+    // Instances tagged as ordinary objects are copied as plain objects. Other
+    // tagged values (including DOM nodes) keep their internal data by reference.
+    return Object.prototype.toString.call ( x ) === '[object Object]' ? OBJECT : SIMPLE
 } // findType func.
 
 
 
-// Plain assignment of a '__proto__' key triggers the inherited setter and
-// replaces the prototype of 'target' instead of creating an own property.
+// The inherited '__proto__' setter changes the target's prototype. Define
+// this JSON key as an own property instead of assigning it.
 function setKey ( target, k, value ) {
     Object.defineProperty ( target, k, { value, enumerable:true, writable:true, configurable:true } )
 } // setKey func.
@@ -73,31 +60,34 @@ function setKey ( target, k, value ) {
 
 
 /**
- *  Deep copy
+ * Copy a data-only structure without recursion.
  *
- *  Copies a javascript data structure into a new one. Plain objects and
- *  arrays are copied, values that keep their data outside of own enumerable
- *  keys are kept by reference.
+ * Own enumerable string keys of objects and arrays are copied. Sparse array
+ * lengths and holes are preserved. Circular references point to the copied
+ * ancestor unless cycle detection is disabled. Shared non-circular containers
+ * are copied separately.
  *
- *  A circular reference points to the copy of the container it closes the
- *  circle with. Set `settings.detectCycles` to false when the data is known
- *  to be acyclic. The checks are skipped then, and the copy of a circular
- *  structure does not end.
+ * Functions and tagged objects such as Date, Map and Set are kept by reference.
+ * Class instances may become plain objects; symbol keys and non-enumerable
+ * properties are not copied. The generic return type describes data-only input;
+ * it cannot represent these changes for arbitrary JavaScript values.
  *
- *  @function deepCopy
- *  @param {*}       origin  - Required. The data structure to copy.
- *  @param {Settings} [settings] - Optional. Controls for the traversal.
- *  @returns {*}              - The copy of `origin`.
- *  @example
- *  let result = deepCopy ( someData )
- *  let fast   = deepCopy ( someData, { detectCycles:false } )
+ * @template T
+ * @param {T} origin The value or data structure to copy.
+ * @param {Settings} [settings] Optional traversal settings.
+ * @returns {T} A copy of the data structure, or the original value when retained by reference.
+ * @example
+ * const copy = deepCopy({ items: [1, 2] })
+ * copy.items.push(3)
+ * @example
+ * const copy = deepCopy({ items: [1, 2] }, { detectCycles: false })
  */
 function deepCopy ( origin, settings ) {
     const rootType = findType ( origin );
     if ( rootType === SIMPLE )   return origin;
 
     const detectCycles = settings?.detectCycles !== false;
-    const root = rootType === ARRAY ? [] : {};
+    const root = rootType === ARRAY ? new Array ( origin.length ) : {};
 
     // Containers waiting to be copied. Each entry holds the source container
     // and the copy that receives its values. A null source marks the end of a
@@ -147,7 +137,7 @@ function deepCopy ( origin, settings ) {
 
                 if ( value === null || typeof value !== 'object' ) {
                         if ( key === '__proto__' )   setKey ( target, key, value )
-                        else                        target[key] = value
+                        else                   target[key] = value
                         continue
                     }
 
@@ -157,7 +147,7 @@ function deepCopy ( origin, settings ) {
                 let child;
                 let keep = false;
                 if ( Array.isArray ( value ) ) {
-                        child = [];
+                        child = new Array ( value.length );
                     }
                 else {
                         const proto = Object.getPrototypeOf ( value );
@@ -168,7 +158,7 @@ function deepCopy ( origin, settings ) {
 
                 if ( keep ) {
                         if ( key === '__proto__' )   setKey ( target, key, value )
-                        else                        target[key] = value
+                        else                   target[key] = value
                         continue
                     }
 
@@ -187,13 +177,13 @@ function deepCopy ( origin, settings ) {
                             }
                         if ( ancestor !== undefined ) {
                                 if ( key === '__proto__' )   setKey ( target, key, ancestor )
-                                else                        target[key] = ancestor
+                                else                   target[key] = ancestor
                                 continue
                             }
                     }
 
                 if ( key === '__proto__' )   setKey ( target, key, child )
-                else                        target[key] = child;
+                else                   target[key] = child;
                 sources.push ( value );
                 targets.push ( child );
             }
